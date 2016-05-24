@@ -180,12 +180,18 @@ public class VideoActivity extends Activity implements IVLCVout.Callback, MediaP
             options.add("--audio-time-stretch"); // time stretching
             options.add("-vvv"); // verbosity
             libvlc = new LibVLC(options);
-
+            libvlc.setOnHardwareAccelerationError(new LibVLC.HardwareAccelerationError() {
+                @Override
+                public void eventHardwareAccelerationError() {
+                    Log.e(TAG,"eventHardwareAccelerationError");
+                }
+            });
             holder.setKeepScreenOn(true);
 
             // Create media player
             mMediaPlayer = new MediaPlayer(libvlc);
             mMediaPlayer.setEventListener(this);
+
 
             // Set up video output
             final IVLCVout vout = mMediaPlayer.getVLCVout();
@@ -244,10 +250,6 @@ public class VideoActivity extends Activity implements IVLCVout.Callback, MediaP
 
     }
 
-    @Override
-    public void onHardwareAccelerationError(IVLCVout vlcVout) {
-        Log.d(TAG, "onHardwareAccelerationError");
-    }
 
     @Override
         public void onEvent(MediaPlayer.Event event) {

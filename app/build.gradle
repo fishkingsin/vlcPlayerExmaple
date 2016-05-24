@@ -24,6 +24,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     // http://mvnrepository.com/artifact/de.mrmaffen/vlc-android-sdk
-    compile "de.mrmaffen:vlc-android-sdk:1.9.8"
+    compile "de.mrmaffen:vlc-android-sdk:3.0.0"
 
 }
